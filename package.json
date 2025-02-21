@@ -4,9 +4,18 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx sls offline",
+    "deploy": "npx sls deploy"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-offline": "^14.4.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "formidable": "^3.5.2",
+    "pg": "^8.13.3"
+  }
 }
