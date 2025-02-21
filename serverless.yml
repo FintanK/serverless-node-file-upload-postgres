@@ -1,0 +1,37 @@
+service: my-serverless-service  # Your service name
+
+frameworkVersion: '3' # or '2' - specify the Serverless Framework version
+
+provider:
+  name: aws # Cloud provider (e.g., aws, azure, google)
+  runtime: nodejs16.x # Runtime environment (e.g., nodejs16.x, python3.9, java11)
+  region: us-east-1 # AWS region
+  stage: dev # Deployment stage (e.g., dev, prod, staging)
+  # Optional: Add other provider configurations here (e.g., environment variables, iam roles)
+  environment: # Example environment variables
+    # MY_VARIABLE: myvalue
+
+functions:
+  hello: # Function name
+    handler: handler.main # Path to your handler function (e.g., handler.js)
+    events: # Triggers for your function
+      - httpApi: # Example: HTTP API endpoint
+          path: /upload
+          method: POST
+    # Optional: other function configurations (e.g., memory, timeout, layers)
+    memory: 128 # Memory in MB
+    timeout: 10 # Timeout in seconds
+
+plugins:
+  - serverless-offline # For local development (optional but highly recommended)
+
+# Optional: Resources that you want to deploy (e.g., DynamoDB tables, S3 buckets)
+resources:
+  Resources:
+    # Example: S3 bucket
+    MyBucket:
+      Type: AWS::S3::Bucket
+
+custom:
+  # Any custom configurations
+  # myVariable: "some value"
