@@ -14,8 +14,8 @@ const dbConfig = {
 };
 
 // S3 Configuration (if storing files on S3)
-// const s3 = new AWS.S3({ /* ... S3 config ... */ });
-// const BUCKET_NAME = 'your-s3-bucket';
+const s3 = new AWS.S3({ });
+const BUCKET_NAME = 'uploads-s3-bucket';
 
 module.exports.main = async (event) => {
     const client = new Client(dbConfig);
@@ -45,12 +45,12 @@ module.exports.main = async (event) => {
                     // await fs.promises.rename(filepath, newFilepath);
 
                     // Option 2: Store on S3 (Recommended for serverless)
-                    // await s3.upload({
-                    //     Bucket: BUCKET_NAME,
-                    //     Key: originalFilename,
-                    //     Body: fs.createReadStream(filepath),
-                    // }).promise();
-                    // const fileUrl = `https://${BUCKET_NAME}.s3.amazonaws.com/${originalFilename}`;
+                    await s3.upload({
+                        Bucket: BUCKET_NAME,
+                        Key: originalFilename,
+                        Body: fs.createReadStream(filepath),
+                    }).promise();
+                    const fileUrl = `https://${BUCKET_NAME}.s3.amazonaws.com/${originalFilename}`;
 
                     // Insert into database
                     const query = 'INSERT INTO uploads (filename, filepath) VALUES ($1, $2) RETURNING *'; // Use fileUrl if storing on S3
