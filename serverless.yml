@@ -1,4 +1,4 @@
-service: my-serverless-service  # Your service name
+service: upload  # Your service name
 
 frameworkVersion: '3' # or '2' - specify the Serverless Framework version
 

@@ -1,8 +1,0 @@
-SQL
-
-CREATE TABLE IF NOT EXISTS uploads (
-    id SERIAL PRIMARY KEY,
-    filename TEXT NOT NULL,
-    filepath TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
